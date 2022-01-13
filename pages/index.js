@@ -1,8 +1,34 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  const [formData, setFormData] = useState({ linkToShort: "" });
+  const [errorMessage, setErrorMessage] = useState(false);
+
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    document.getElementById("copyButton").innerText = "Copy";
+    setFormData({ [name]: value })
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    setErrorMessage(!formData.linkToShort.trim() && "Link is required!");
+  }
+
+  useEffect(() => {
+    if (Object.keys(errorMessage).length === 0) {
+      //do whatever as form is validated
+      console.log(formData);
+    }
+  }, [errorMessage]);
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,46 +37,60 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <div className="container-g" style={{ minHeight: "100vh", marginTop: "10vh" }}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to LINK<span>SHORTNER!</span>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Get started by typing/pasting{' '}
+          <code className={styles.code}>your link below</code>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+        {/* search box */}
+        <div className={styles.searchBox}>
+          <input name="linkToShort" type="text" placeholder='Paste your link here' onChange={handleOnChange} />
+          <button onClick={handleOnSubmit}>Short</button>
+          {
+            errorMessage && <p className={styles.errorStyle}>{errorMessage}</p>
+          }
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
         </div>
-      </main>
+
+
+        {/* result section  */}
+        <div className={`container-g ${styles.result}`}>
+          <h3>Here is short form of your link ✔ </h3>
+
+          <pre>
+            {/* in this code tag you can use variable */}
+            <code>{"https://short.dUnUGtd"}</code>
+
+
+            <button id="copyButton" onClick={() => {
+              //pass same variable like code tage in writeText(__)
+              navigator.clipboard.writeText("https://short.dUnUGtd");
+
+
+              let copyButtonActions = document.getElementById("copyButton");
+              // for better ux
+              copyButtonActions.innerText = "Copied";
+              copyButtonActions.style.backgroundColor = "#61e682";
+              copyButtonActions.style.color = "white";
+
+              setTimeout(() => {
+                copyButtonActions.innerText = "Copy";
+                copyButtonActions.style.backgroundColor = "#eee";
+                copyButtonActions.style.color = "gray";
+              }, 5000);
+            }}>Copy</button>
+
+          </pre>
+        </div>
+      </div>
+
+
 
       <footer className={styles.footer}>
         <a

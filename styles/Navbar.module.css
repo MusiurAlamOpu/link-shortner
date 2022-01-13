@@ -1,0 +1,39 @@
+.navbar {
+    background-color: #eee;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+}
+
+.navbar p {
+    font-size: clamp(1.4rem, 1.6vw, 2rem);
+    font-weight: 600;
+    color: #272727;
+    cursor: pointer;
+}
+
+.navbar span {
+    color: #1674ee;
+    cursor: pointer;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar li {
+    list-style: none;
+    color: gray;
+}
+
+.navbar li:hover {
+    color: black;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 .container {
   padding: 0 2rem;
+  background-color: #eeeeee;
 }
 
 .main {
@@ -11,6 +12,124 @@
   justify-content: center;
   align-items: center;
 }
+
+
+
+.searchBox {
+  position: relative;
+  width: 80%;
+  margin: 2rem auto;
+  background-color: white;
+  height: 50px;
+  min-width: 250px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 15px lightgray;
+  padding-left: 1rem;
+
+  display: flex;
+  flex-wrap: nowrap;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap:0;
+
+}
+
+@media (max-width: 640px) {
+  .searchBox {
+    width: 100%;
+  }
+  
+}
+
+.searchBox input {
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  outline: none;
+  border: none;
+  
+}
+
+.searchBox button {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #0070f3;
+  height: 100%;
+  color: white;
+  cursor: pointer;
+
+
+}
+
+.errorStyle {
+  position: absolute;
+  top: 3rem;
+  background-color: #ffcfcf;
+  color: #ff3030;
+  padding: 0.3rem 2rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+}
+
+.result h3{
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  background-color: #69c769;
+  width: 50%;
+  min-width: 250px;
+  padding: 0.5rem 2rem;
+  margin: 3rem auto;
+  border-radius: 5px;
+
+}
+
+.result pre {
+  position: relative;
+  text-align: center;
+  background-color: white;
+  padding:2rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px lightgray;
+}
+
+.result code {
+  font-size: 20px;
+}
+
+.result button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 5px 10px;
+  background-color: lightgray;
+  color: #505050;
+
+  border: none;
+  outline: none;
+  border-radius: 5px;
+} 
+
+.result button:hover {
+  background-color: #505050;
+  color: white;
+  cursor: pointer;
+}
+
+.result button:focus {
+  background-color: #61e682;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
 
 .footer {
   display: flex;
@@ -28,21 +147,15 @@
   flex-grow: 1;
 }
 
-.title a {
+.title span {
   color: #0070f3;
   text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
 }
 
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: clamp(2rem, 3vw, 4rem);
 }
 
 .title,
