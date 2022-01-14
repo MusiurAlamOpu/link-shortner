@@ -86,7 +86,7 @@
 
 }
 
-.result pre {
+.linkBox {
   position: relative;
   text-align: center;
   background-color: white;
@@ -95,8 +95,11 @@
   box-shadow: 2px 4px 10px lightgray;
 }
 
-.result code {
+.linkP {
   font-size: 20px;
+  word-break: break-all;
+  text-align: left;
+  padding-top: 10px;
 }
 
 .result button {
